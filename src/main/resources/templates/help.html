@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Census Management System</title>
+<!-- Bootstrap CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+
+<body>
+<div th:replace="navbar::header"></div>
+
+<div th:replace="dashboard::dashboard"></div>
+
+<img class="img" src="images/Contact.jpg">
+
+<section class="login">
+<div class="container">
+    <h4 class="h4"><i>Feel Free to Contact Us...!!</i></h4>
+</div><br><br>
+
+<h6 class="comm"><i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;<b>census999@gmail.com</b></h6>
+
+<h6 class="comm"><i class="fa fa-phone" aria-hidden="true"></i>&nbsp;<b>712-6756-6546</b></h6>
+
+</section>
+
+</body>
+</html>
+
+<style>
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+body{
+   background-color: #f3f5f9;
+}
+
+
+.btn{
+width:90px;
+}
+
+
+.h5{
+margin-top:50px;
+}
+
+
+.wrapper{
+  display: flex;
+  position: relative;
+  
+}
+
+.wrapper .sidebar{
+  margin-top:55px;
+  width: 250px;
+  height: 100%;
+  background: black;
+  padding: 30px 0px;
+  position: fixed;
+}
+
+.wrapper .sidebar h5{
+  color: #fff;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 30px;
+  margin-top:0px;
+}
+
+.wrapper .sidebar ul li{
+  padding: 15px;
+  border-bottom: 1px solid #bdb8d7;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+  border-top: 1px solid rgba(255,255,255,0.05);
+  margin-left:35px;
+}    
+
+.wrapper .sidebar ul li a{
+  color: #bdb8d7;
+  display: block;
+}
+
+.wrapper .sidebar ul li a .fas{
+  width: 25px;
+}
+
+.wrapper .sidebar ul li:hover{
+  background-color: #594f8d;
+}
+    
+.wrapper .sidebar ul li:hover a{
+  color: #fff;
+}
+ 
+
+.wrapper .main_content{
+  width: 100%;
+  margin-left: 200px;
+  margin-top:57px;
+}
+
+.wrapper .main_content .header1{
+  padding: 20px;
+  background: #fff;
+  color: #717171;
+  border-bottom: 1px solid #e0e4e8;
+  margin-left:50px;
+}
+
+.wrapper .main_content .info{
+  margin: 20px;
+  color: #717171;
+  line-height: 25px;
+  margin-left:50px;
+}
+
+.wrapper .main_content .info div{
+  margin-bottom: 20px;
+}
+
+.panel-body{
+    margin-left:260px;
+    margin-top:150px;
+}
+
+.img{
+   
+    width:600px;
+    height:488px;
+    margin-left: 650px;
+    margin-top:120px;
+}
+
+.login{
+    position:fixed;
+    width:40%;
+    height:350px;
+    padding:30px;
+    background: gainsboro;
+    border:1px solid black;
+    border-radius: 250px;
+    top:50%;
+    left :36%;
+    width : 370px ;
+    transform:translate(-50%,-50%);
+    margin-top: 55px;
+}
+
+.h4{
+    margin-left:30px;
+    margin-top: 70px;
+}
+
+.comm{
+    margin-left: 35px;
+}
+
+</style>
