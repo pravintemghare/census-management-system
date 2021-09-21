@@ -19,7 +19,7 @@ import com.cg.censusmanagementsystem.entities.Enumerator;
 public class FrontController {
 
 	
-	@RequestMapping(value = "/welcome")
+	@RequestMapping(value = "/")
 	public ModelAndView welcomePage()
 	{
 		ModelAndView mav=new ModelAndView("welcome");
