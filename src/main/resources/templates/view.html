@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Census Management System</title>
+
+<!-- Bootstrap CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+</head>
+<body>
+
+<div th:replace="navbar::header"></div>
+
+<div th:replace="dashboard::dashboard"></div>
+
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+      <h5>Users List</h5>
+    </div>
+    <div class="panel-body">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Firstname</th>
+            <th>Lastname</th>
+            <th>Email</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Pooja</td>
+            <td>Netke</td>
+            <td>poojanetke@gmail.com</td>
+            <td><button class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i>&nbsp;Delete</button>
+                <button class="btn1 btn-success" style="margin-left: 10px"><i class="fa fa-pencil" aria-hidden="true"></i>&nbsp;Update</button>
+                <button class="btn btn-info" style="margin-left: 10px"><i class="fa fa-info" aria-hidden="true"></i>&nbsp;Details</button>
+            </td>
+          </tr>
+
+          <tr>
+            <td>Supreet</td>
+            <td>Sawhney</td>
+            <td>supreetsawhney@gmail.com</td>
+            <td><button class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i>&nbsp;Delete</button>
+                <button class="btn1 btn-success" style="margin-left: 10px"><i class="fa fa-pencil" aria-hidden="true"></i>&nbsp;Update</button>
+                <button class="btn btn-info" style="margin-left: 10px"><i class="fa fa-info" aria-hidden="true"></i>&nbsp;Details</button>
+            </td>
+          </tr>
+
+          <tr>
+            <td>Anjani</td>
+            <td>Chunduri</td>
+            <td>anjanichunduri@gmail.com</td>
+            <td><button class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i>&nbsp;Delete</button>
+                <button class="btn1 btn-success" style="margin-left: 10px"><i class="fa fa-pencil" aria-hidden="true"></i>&nbsp;Update</button>
+                <button class="btn btn-info" style="margin-left: 10px"><i class="fa fa-info" aria-hidden="true"></i>&nbsp;Details</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
+
+</body>
+</html>
+
+
+<style>
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+body{
+   background-color: #f3f5f9;
+}
+
+
+.btn{
+width:90px;
+}
+
+
+.btn1{
+width:90px;
+height:37px;
+border:solid green;
+border-radius:3px;
+}
+
+.h5{
+margin-top:50px;
+}
+
+.wrapper{
+  display: flex;
+  position: relative;
+  
+}
+
+.wrapper .sidebar{
+  margin-top:55px;
+  width: 250px;
+  height: 100%;
+  background: black;
+  padding: 30px 0px;
+  position: fixed;
+}
+
+.wrapper .sidebar h5{
+  color: #fff;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 30px;
+  margin-top:0px;
+}
+
+.wrapper .sidebar ul li{
+  padding: 15px;
+  border-bottom: 1px solid #bdb8d7;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+  border-top: 1px solid rgba(255,255,255,0.05);
+  margin-left:35px;
+}    
+
+.wrapper .sidebar ul li a{
+  color: #bdb8d7;
+  display: block;
+}
+
+.wrapper .sidebar ul li a .fas{
+  width: 25px;
+}
+
+.wrapper .sidebar ul li:hover{
+  background-color: #594f8d;
+}
+    
+.wrapper .sidebar ul li:hover a{
+  color: #fff;
+}
+ 
+
+.wrapper .main_content{
+  width: 100%;
+  margin-left: 200px;
+  margin-top:57px;
+}
+
+.wrapper .main_content .header1{
+  padding: 20px;
+  background: #fff;
+  color: #717171;
+  border-bottom: 1px solid #e0e4e8;
+  margin-left:50px;
+}
+
+.wrapper .main_content .info{
+  margin: 20px;
+  color: #717171;
+  line-height: 25px;
+  margin-left:50px;
+}
+
+.wrapper .main_content .info div{
+  margin-bottom: 20px;
+}
+
+.panel-body{
+    margin-left:260px;
+    margin-top:150px;
+}
+</style>
+
