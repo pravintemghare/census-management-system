@@ -13,6 +13,8 @@
 
 
 <title>Census Management System</title>
+
+<!-- <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.2/js/bootstrapValidator.min.js"></script> -->
 </head>
 
 
@@ -26,7 +28,7 @@
     <div class="container">
         <h5 class="h5"><i>Welcome Back, Login Here!!</i></h5>
         <hr>
-        <form name="myform" action="#" th:action="@{/getEnumerator}" th:object="${enumerator}" method="post" onsubmit="return validate()">
+        <form name="myform" th:action="@{/home}" method="post" onsubmit="return validate()">
             
             <i class="fa fa-envelope" aria-hidden="true"></i>
             <label>Username</label>
@@ -43,7 +45,7 @@
             <a class="forgot" href="/reset-password"><i>Forgot Password??</i></a>
 
             <div class="text-center">
-                <a  href="/home"><button type="submit" class="btn">Login</button></a>
+                <a href="/home"><button id="myButton" type="submit" class="btn" >Login</button></a>
             </div>
 
             <a class="register" th:href="@{/showRegisterForm}"><i>New User?? Register Here!!</i></a>
@@ -92,8 +94,12 @@ function validate(){
 		
 		else{
 			alert("Login Successfully...");
-		}
+			document. getElementById("myButton"). onclick = function () {
+			window.location.href = "home.html";
+	    }
 }
+}
+
 
 
 
@@ -187,4 +193,3 @@ function validate(){
 
 </style>
 
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.2/js/bootstrapValidator.min.js"></script>

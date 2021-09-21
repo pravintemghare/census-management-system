@@ -48,22 +48,29 @@ public class EnumeratorController {
 		}
 	  
 	
-	@RequestMapping(value = "/showLoginForm")
-	public ModelAndView showLoginForm() {
+		
+		  @RequestMapping(value = "/showLoginForm")
+		  public ModelAndView showLoginForm()
+		  {
+		  
+		  ModelAndView mav=new ModelAndView("login"); 
+		  return mav;
+		  
+		  }
+		 
+		  
 	
-		ModelAndView mav=new ModelAndView("login"); 
-	    return mav; 
-	    
-	}
-	
-	@GetMapping("/getEnumerator/{email}/{password}")
-	  public ModelAndView getEnumerator(@ModelAttribute("enumerator") Enumerator enumerator,@PathVariable String email,@PathVariable String password,HttpServletRequest request){
-			
-			service.getEnumerator("email","password");
-			ModelAndView mav=new ModelAndView("login"); 
-			return mav; 
-			
-		}
+	/*
+	 * @GetMapping("/getEnumerator/{email}/{password}") public ModelAndView
+	 * getEnumerator(@ModelAttribute("enumerator") Enumerator
+	 * enumerator,@PathVariable String email,@PathVariable String
+	 * password,HttpServletRequest request){
+	 * 
+	 * service.getEnumerator("email","password"); ModelAndView mav=new
+	 * ModelAndView("login"); return mav;
+	 * 
+	 * }
+	 */
 	
 	
 	

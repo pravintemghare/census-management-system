@@ -35,8 +35,9 @@ public class FrontController {
 		return mav;
 	}
 	
+	
 	/*
-	 * @RequestMapping(value = "/login") public ModelAndView loginPage() {
+	 * @RequestMapping(value = "/showLoginForm") public ModelAndView loginPage() {
 	 * ModelAndView mav=new ModelAndView("login"); return mav; }
 	 */
 	
