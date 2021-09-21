@@ -17,13 +17,6 @@ pipeline {
                 }
             }
         }
-        stage('SonarQube-Test') {
-            steps {
-                withMaven(maven : 'mvn83') {
-                    sh 'mvn sonar:sonar -Dsonar.projectKey=census-management-system -Dsonar.host.url=http://localhost:9000 -Dsonar.login=2c70bd1d626a0afc81e5dba37517c8085b76456b'
-                }
-            }
-        }
         stage('ApplicationPackage') {
             steps {
                 withMaven(maven : 'mvn83'){
