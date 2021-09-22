@@ -11,10 +11,11 @@ import org.hibernate.validator.constraints.NotBlank;
 @Entity
 @Table(name = "enumerator")
 public class Enumerator {
-@NotBlank(message = "First Name is required")
+
 	
-    
-	private String firstname;
+	
+	@NotBlank(message = "First Name is required")
+    private String firstname;
 	
 	@NotBlank(message = "Last Name is required")
 	private String lastname;
