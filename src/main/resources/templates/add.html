@@ -25,11 +25,14 @@
         <div  style="background-color: rgb(255, 255,255); width:70%; margin-left:320px; margin-top:150px; margin-bottom: 5px; padding:20px;"><!--formbox-->
          
      
-    <form action="#" name="myform" onsubmit="return validm()" class="requires-validation" novalidate>
-        <div style="margin-left:20px; margin-top:20px;"> 
+    <form action="#" th:action="@{/saveHeader}" th:object="${header}" method="post"
+     name="myform" onsubmit="return validm()" class="requires-validation" novalidate>
+       
+         <div style="margin-left:20px; margin-top:20px;"><label for="username">Family Identification serial</label> 
+           <input type="integer"   placeholder="Default" id="varchar" name="familyIdentification">
            
-            <span style="margin-left:60%;color:brown;"><b><label for="year">Census Year:</label></b>
-          <select name="year" id="year">
+           <span style="margin-left:20%;color:brown;"><b><label for="year">Census Year:</label></b>
+           <select name="censusYear" id="year">
             <option value="2021">2021</option>
             <option value="2015">2015</option>
             <option value="2010">2010</option>
@@ -42,12 +45,13 @@
           <hr size="3" width="100%" color="gray"> <!--end of head family details-->    
           <!--start of form-->       
           <h4 style="text-align:center"><i><u>Personal Details</u></i></h4> 
+          
           <div class="row">
           
         <div style="margin-left:100px; margin-top:20px;" class="row">
           <label style="margin-bottom:10px;" class="form-label" for="name" ><b>Name of the Head:</b></label>
-          <div class="col-md-5 form-group">
-            <input type="text" class="form-control"  id="name" placeholder="First name" autocomplete="off" required >
+          <div style="width:500px">
+            <input type="text" class="form-control"  id="name" name="headOfFamily" placeholder="Name of the head" autocomplete="off" required >
             <span id="fname" class="text-danger"></span>
             <div  class="invalid-feedback"><!--validationfirstname -->
               Please enter valid Firstname
@@ -58,39 +62,21 @@
             
       
           </div>
-          <div class="col-md-5 form-group">
-            <input type="text" class="form-control" id="lastname" placeholder="Last name" autocomplete="off" required>
-            <span id="lname" class="text-danger"></span>
-            <div class="invalid-feedback"><!--validation lastname-->
-              Please enter valid lastname.
-            </div>
-           
-            </div><!--name div--></div>
+          </div>
         
 
             <!--start ofnid form -->
   <div style="margin-left:100px; margin-top:20px;" class="row">
-    <div class="col-md-5">
-      <label style="margin-bottom:10px;"for="inputMember" class="form-label">National identification Id type</label>
-      <select id="inputMember" class="form-select" required>
-        <option selected disabled value="">Choose</option>
-        <option>NID1</option>
-        <option>NID2</option>
-        <option>NID3</option>
-         </select>
-         <div class="invalid-feedback">
-            Please select a valid state.
-          </div><!--validation nid type-->
-        </div>
-         <div class="col-md-5 form-group">
-          <label style="margin-bottom:10px;"for="nidno" class="form-label">National Identification Id No.</label>
-        <input type="text" id="nidno" class="form-control" placeholder="nid no." autocomplete="off" required>
+    <div style="width:500px">
+          <label style="margin-bottom:10px;"for="nidno" class="form-label">National Identification Id No.(Idqr)</label>
+        <input type="number" id="nidno"  name="idqr" class="form-control" placeholder="nid no." autocomplete="off" required>
         <span id="idn" class="text-danger"></span>
         <div  class="invalid-feedback"><!--validation lastname-->
             please fill the nidno
         </div>
       </div>
   </div><!--headend of nidno div-->
+  
   <!--gender and age div start-->
 <div style="margin-left:100px; margin-top:20px;"role="form" data-toggle="validator" class="row">
     <div class="col-md-4">
@@ -98,15 +84,15 @@
       <label for="inputMember" class="form-label">Gender</label>
       </div><!--Gender label div-->
       <div class="form-check-inline col-md-4">
-        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" required>
-        <label class="form-check-label" for="flexRadioDefault1" >
+        <input class="form-check-input" type="radio" name="gender" value="Male" id="flexRadioDefault1" required>
+        <label class="form-check-label" for="gender" >
           Male
         </label>
       </div><!--firstradio-->
       
       <div class="form-check-inline col-md-4">
-        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" required>
-        <label class="form-check-label" for="flexRadioDefault2">
+        <input class="form-check-input" type="radio" name="gender" value="Female" id="flexRadioDefault2" required>
+        <label class="form-check-label" for="gender">
           Female
         </label>
         
@@ -115,8 +101,8 @@
       
   </div><!--headgenderdiv-->
   <div style="margin-right:30px;margin-left:100px;" class="col-md-2">
-    <label for="inputMember" class="form-label">Nationality</label>
-    <select id="inputMember" class="form-select" required>
+    <label for="inputMember" class="form-label">Race</label>
+    <select id="inputMember"- class="form-select" required>
       <option selected disabled value="">Choose</option>
       <option>German</option>
       <option>Turkish</option>
@@ -131,7 +117,7 @@
     </div><!--headRacediv-->
     <div class="col-md-2 form-group">
         <label style="margin-left:20px;margin-bottom:9px;" class="input-label">Age</label>
-          <input type="number" class="form-control" placeholder="value" id="age" name="age1" min="1" max="100" required>
+          <input type="number" class="form-control" placeholder="value" id="age" name="age" min="1" max="100" required>
          
           <div class="invalid-feedback">
              Fill the valid age.
@@ -143,7 +129,7 @@
 <div role="form" data-toggle="validator" style="margin-left:100px; margin-top:20px;margin-bottom:15px;" class="row">
     <div style=margin-right:10px; class="col-md-5">
       <label style="margin-bottom:20px;" class="input-label">Date of Birth</label>
-    <input type="date" class="form-control" id="birthday" name="birthday" required>
+    <input type="date" class="form-control" id="birthday" name="dateOfBirth" required>
     <div class="invalid-feedback">
         Please fill the Date of birth
       </div><!--validation age type-->
@@ -154,19 +140,19 @@
       <label style="margin-bottom:20px;"  for="inputMember" class="form-label">Marital Status</label>
       </div><!--marital label div-->
       <div class="form-check-inline col-md-3">
-        <input class="form-check-input" type="radio" name="flexRadioDefaultb" id="flexRadioDefaultb1" required>
+        <input class="form-check-input" type="radio" name="maritalStatus" value=" Married" id="flexRadioDefaultb1" required>
         <label class="form-check-label" for="flexRadioDefault1">
           Married
         </label>
       </div><!--maritalfirstradio-->
       
       <div class="form-check-inline col-md-3">
-        <input class="form-check-input" type="radio" name="flexRadioDefaultb" id="flexRadioDefaultb2" required>
+        <input class="form-check-input" type="radio" name="maritalStatus" value=" Unmarried" id="flexRadioDefaultb2" required>
         <label class="form-check-label" for="flexRadioDefault2">
           Unmarried
         </label></div><!--marital second div-->
         <div class="form-check-inline col-md-3">
-          <input class="form-check-input" type="radio" name="flexRadioDefaultb" id="flexRadioDefaultb3" required>
+          <input class="form-check-input" type="radio" name="maritalStatus" value=" Divorced" id="flexRadioDefaultb3" required>
           <label class="form-check-label" for="flexRadioDefaultb3">
             Divorced
           </label>
@@ -178,7 +164,7 @@
     <div style="margin-left:100px; margin-top:20px;margin-bottom: 30px;" class="row">
       <div class="col-md-4">
         <label for="inputMember" class="form-label">Education</label>
-        <select id="inputMember" class="form-select" required>
+        <select id="inputMember" name="education" class="form-select" required>
           <option selected disabled value="">Choose</option>
           <option>Hauptschule </option>
           <option>Realschule</option>
@@ -191,7 +177,7 @@
         </div><!--educationdiv-->
         <div class="col-md-3">
           <label for="inputMember" class="form-label">Type of work</label>
-          <select id="inputMember" class="form-select" required>
+          <select id="inputMember" name="profession" class="form-select" required>
             <option selected disabled value="" >Choose</option>
             <option>Public sector</option>
             <option>Private sector</option>
@@ -206,7 +192,7 @@
             <div>
               <label class="input-label">Wages</label></div>
             
-            <input style="margin-top:10px" placeholder="Wages"  type="number" class="form-control" min="1" step="any"  required/>
+            <input style="margin-top:10px" placeholder="Wages"  type="number" name="wages" class="form-control" min="1" step="any"  required/>
               </div><!--wages div end-->
         
             
@@ -219,57 +205,37 @@
       <hr size="3" width="100%" color="gray"> <!--line--> 
 
       <h4 style="text-align:center"><i><u>Contact Details</u></i></h4> <!--start of contact details-->
-      <div style="margin-left:100px; margin-top:20px;" class="row">
-        <div style="margin-top:10px;margin-right:120px;" class="col-md-4 form-group">
-      <label for="phonen1" class="form-label"> Phone Number</label>
-      <div class="input-group has-validation">
-        <span class="input-group-text" id="inputGroupPrepend">+49</span>
-    <input type="text" id="phone1" class="form-control" name="phonen1" placeholder="XXX-XXX-XXXX" autocomplete="off" required>
-    </div>
-    <span id="phoneid" class="text-danger"></span></div><!--phone number div-->
-           <!--landline number div-->
-           <div style="margin-top:10px;margin-left:20px;" class="col-md-4">
-            <label for="phone" class="form-label"> Landline Number</label>
-            <div class="input-group has-validation">
-              <span class="input-group-text" id="inputGroupPrepend">+49</span>
-            <input type="text" id="landline" placeholder="areacode-number" class="form-control" name="landlinen" autocomplete="off" required>
-            </div>
-          
-          <span id="landlineid" class="text-danger"></span>
-        </div></div><!--end of phone number and landline no. div-->
+      
                  <div style="margin-left:100px; margin-top:20px; margin-bottom:30px;" class="row">
                     <div style="margin-top:10px;" class="col-10">
                       <label for="inputAddress" class="form-label">Address</label>
-                      <input type="text" class="form-control" id="inputAddress" placeholder="Address" autocomplete="off" required>
+                      <textarea class="form-control" id="exampleFormControlTextarea1" name="address" rows="3"placeholder="Address"  autocomplete="off" required></textarea>
                     </div>
-                    <div style="margin-top:20px;" class="col-10">
-                      <label for="inputAddress2" class="form-label">Address 2</label>
-                      <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor" autocomplete="off" required>
-                    </div>
+                    
                     <div style="margin-top:20px;" class="col-md-5 form-group">
                       <label for="inputCity" class="form-label">City</label>
-                      <input type="text" class="form-control" id="inputCity" autocomplete="off" required>
+                      <input type="text" class="form-control" id="inputCity" name="city" autocomplete="off" required>
                       
                     </div>
                     <div style="margin-top:20px;"class="col-md-3">
                       <label for="inputState" class="form-label">State</label>
-                      <select id="inputState" class="form-select" required>
+                      <select id="inputState" name="state" class="form-select" required>
                         <option selected disabled value="">Choose...</option>
-                        <option>...</option>
+                        <option>Baden-Württemberg</option>
+                        <option>Bavaria</option>
+                        <option>Berlin</option>
+                        <option>Lower Saxony</option>
+                        <option>Saarland</option>
                       </select>
                     </div>
-                    <div style="margin-top:20px;" class="col-md-2">
-                      <label for="inputZip" class="form-label">Zip</label>
-                      <input type="text" class="form-control" id="inputZip" autocomplete="off" required>
-                      <span id="zipid" class="text-danger"></span>
-                    </div></div><!--contact div ended-->
+                   </div><!--contact div ended-->
                     <hr size="3" width="100%" color="gray"> <!--line--> 
     <h4 style="text-align:center"><i><u>Family Details</u></i></h4> <!--start of Family Details-->
     <div style="margin-left:100px; margin-top:20px; margin-bottom:30px;" class="row">
       
       <label style="margin-top:5px" class="input-label col-sm-3"><b>Number of family members</b></label>
       <div style="margin-left:0px;" class="col-sm-2">
-  <input type="number" class="form-control" placeholder="0"id="age" name="age" min="1" max="100" required>
+  <input type="number" class="form-control" placeholder="0"id="age" name="familyCount" min="1" max="100" required>
   </div>
   </div><!--family div ended-->
  
@@ -306,8 +272,11 @@
          </div>
 
 
-         <!--formfooterended-->
-<!-- Modal -->
+
+<!--formfooterended-->
+
+
+<!--Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -315,31 +284,53 @@
           <h5 class="modal-title" id="exampleModalLabel">New Member</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
+      
         <div class="modal-body">
-          <form action="#" name="childform" onsubmit="return validc()" class="requires-validation" novalidate>
+          <form action="#" th:action="@{/saveDetails}" th:object="${details}" method="post"
+          name="childform" onsubmit="return validc()" class="requires-validation" novalidate>
 
-          <div class="row">
-    <div class="col">
-       <label for="name" class="input-label">First name</label>
-      <input type="text"  id="namec" class="form-control" placeholder="First name" aria-label="First name" autocomplete="off" required>
+      
+        <div style="margin-top:20px;"><label for="username">Family Identification serial</label> 
+           <input type="integer" placeholder="" id="varchar" name="familyIdentification"
+           style="width:40px;">
+           
+           <span style="margin-left:30px;color:brown;"><b><label for="year">Census Year:</label></b>
+           <select name="censusYear" id="year">
+            <option value="2021">2021</option>
+            <option value="2015">2015</option>
+            <option value="2010">2010</option>
+          
+          </select></span><!--census year form end-->
+          </div>
+      
+      
+      <br>
+      
+      
+      
+      <div class="row">
+      <div class="col">
+      <label for="name" class="input-label">Full name</label>
+      <input type="text" name="nameOfMember" id="namec" class="form-control" placeholder="First name" aria-label="First name" autocomplete="off" required>
       <span id="fnamec" class="text-danger"></span>
       <div class="invalid-feedback">
-        Fill the Firstname
+        Fill the Fullname
       </div>
     </div>
     <div class="col">
-      <label for="lastnamec" class="input-label">Last name</label>
-      <input id="lastnamec" type="text" class="form-control" placeholder="Last name" aria-label="Last name" autocomplete="off" required>
+      <label for="lastnamec" class="input-label">National Identification Id No.</label>
+      <input name="idqr" id="lastnamec" type="text" class="form-control" placeholder="Idqr no." aria-label="Last name" autocomplete="off" required>
       <span id="lnamec" class="text-danger"></span>
       <div class="invalid-feedback">
-        Fill the Lastname
+        Fill the Idqr no.
       </div>
     </div>
   </div>
+  
   <div  role="form" data-toggle="validator" style="Margin-top:20px"  class="row">
   <div class="col-md-6">
-      <label for="inputMember" class="form-label">Member type</label>
-      <select id="inputMember" class="form-select" required>
+      <label for="inputMember" class="form-label">Relation</label>
+      <select name="relation" id="inputMember" class="form-select" required>
         <option selected disabled value="">Choose</option>
         <option>Wife</option>
         <option>Mother</option>
@@ -354,14 +345,14 @@
   <label for="inputMember" class="form-label">Gender</label>
   </div><!--Gender label div-->
   <div class="form-check-inline col-md-4">
-    <input class="form-check-input" type="radio" name="flexRadioDefaultn" id="flexRadioDefault11" required>
+    <input class="form-check-input" type="radio" name="gender" value=" Male" id="flexRadioDefault11" required>
     <label class="form-check-label" for="flexRadioDefault1">
       Male
     </label>
   </div><!--firstradio-->
   
   <div class="form-check-inline col-md-4">
-    <input class="form-check-input" type="radio" name="flexRadioDefaultn" id="flexRadioDefault22" required>
+    <input class="form-check-input" type="radio" name="gender" value="Female" id="flexRadioDefault22" required>
     <label class="form-check-label" for="flexRadioDefault2">
       Female
     </label>
@@ -370,7 +361,7 @@
   <div style="margin-top:20px" class="row">
     <div style=margin-right:10px; class="col">
        <label for="birthday" class="input-label">Date of Birth</label>
-  <input type="date" class="form-control" id="birthdayc" name="birthday1" required>
+  <input type="date" class="form-control" id="birthdayc" name="dateOfBirth" required>
   </div><!--datepickerend-->
   <div class="col-md-4">
   <label style="margin-left:10px" class="input-label">Age</label>
@@ -384,19 +375,19 @@
   <label for="inputMember" class="form-label">Marital Status</label>
   </div><!--marital label div-->
   <div class="form-check-inline col-md-3">
-    <input class="form-check-input" type="radio" name="flexRadioDefaultn1" id="flexRadioDefault1"required>
+    <input class="form-check-input" type="radio" value="Married" name="maritalStatus" id="flexRadioDefault1"required>
     <label class="form-check-label" for="flexRadioDefault1">
       Married
     </label>
   </div><!--maritalfirstradio-->
   
   <div class="form-check-inline col-md-3">
-    <input class="form-check-input" type="radio" name="flexRadioDefaultn1" id="flexRadioDefault2" required>
+    <input class="form-check-input" type="radio" value="Unmarried" name="maritalStatus" id="flexRadioDefault2" required>
     <label class="form-check-label" for="flexRadioDefault2">
       Unmarried
     </label></div><!--marital second div-->
     <div class="form-check-inline col-md-3">
-      <input class="form-check-input" type="radio" name="flexRadioDefaultn1" id="flexRadioDefault3" required>
+      <input class="form-check-input" type="radio" value="Divorced" name="maritalStatus" id="flexRadioDefault3" required>
       <label class="form-check-label" for="flexRadioDefault2">
         Divorced
       </label>
@@ -406,8 +397,8 @@
   <!--Start of race block-->
   <div style="margin-top:20px;" class="row">
   <div class="col-md-6">
-    <label for="inputMember" class="form-label">Nationality</label>
-    <select  id="inputMember" class="form-select" required>
+    <label for="inputMember" class="form-label">Race</label>
+    <select name="race" id="inputMember" class="form-select" required>
       <option selected disabled value="">Choose</option>
       <option>German</option>
       <option>Turkish</option>
@@ -418,7 +409,7 @@
     </select></div><!--Race-->
     <div class="col-md-6">
       <label for="inputMember" class="form-label">Education</label>
-      <select id="inputMember" class="form-select" required>
+      <select name="education" id="inputMember" class="form-select" required>
         <option selected disabled value="">Choose</option>
         <option>Hauptschule</option>
         <option>Realschule </option>
@@ -433,7 +424,7 @@
   <div style="margin-top:20px;" class="row">
     <div class="col-md-8">
       <label for="inputMember" class="form-label">Type of work</label>
-      <select id="inputMember" class="form-select" required>
+      <select name="profession" id="inputMember" class="form-select" required>
         <option selected disabled value="" >Choose</option>
         <option>Public sector</option>
         <option>Private sector</option>
@@ -448,7 +439,7 @@
       <div>
         <label class="input-label">Wages</label></div>
       
-      <input style="margin-top:10px" placeholder="Wages"  type="number" class="form-control" min="1" step="any"  required/>
+      <input style="margin-top:10px" placeholder="Wages"  type="number" name="wages" class="form-control" min="1" step="any"  required/>
         </div><!--wages div end-->
   
       </div>
