@@ -9,7 +9,7 @@ import javax.validation.constraints.Pattern;
 import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
-@Table(name = "enumerator")
+@Table(name = "census.enumerator")
 public class Enumerator {
 
 	
