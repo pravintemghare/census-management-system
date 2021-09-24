@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
 <html>
 <head>
 <meta charset="ISO-8859-1">
@@ -25,42 +27,35 @@
       <table class="table table-striped">
         <thead>
           <tr>
-            <th>Firstname</th>
-            <th>Lastname</th>
-            <th>Email</th>
+            <th>Family Identi.</th>
+            <th>Name of Head</th>
+            <th>Idqr no.</th>
+            <th>Gender</th>
+            <th>City</th>
+             <th>Profession</th>
+            <th>Census Year</th>
+           
             <th>Actions</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Pooja</td>
-            <td>Netke</td>
-            <td>poojanetke@gmail.com</td>
+          <tr th:each="header:${headers}">
+            <td th:text="${header.familyIdentification}"></td>
+            <td th:text="${header.headOfFamily}"></td>
+            <td th:text="${header.idqr}"></td>
+            <td th:text="${header.gender}"></td>
+            <td th:text="${header.city}"></td>
+            <td th:text="${header.profession}"></td>
+            <td th:text="${header.censusYear}"></td>
+            
             <td><button class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i>&nbsp;Delete</button>
                 <button class="btn1 btn-success" style="margin-left: 10px"><i class="fa fa-pencil" aria-hidden="true"></i>&nbsp;Update</button>
                 <button class="btn btn-info" style="margin-left: 10px"><i class="fa fa-info" aria-hidden="true"></i>&nbsp;Details</button>
             </td>
           </tr>
 
-          <tr>
-            <td>Supreet</td>
-            <td>Sawhney</td>
-            <td>supreetsawhney@gmail.com</td>
-            <td><button class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i>&nbsp;Delete</button>
-                <button class="btn1 btn-success" style="margin-left: 10px"><i class="fa fa-pencil" aria-hidden="true"></i>&nbsp;Update</button>
-                <button class="btn btn-info" style="margin-left: 10px"><i class="fa fa-info" aria-hidden="true"></i>&nbsp;Details</button>
-            </td>
-          </tr>
-
-          <tr>
-            <td>Anjani</td>
-            <td>Chunduri</td>
-            <td>anjanichunduri@gmail.com</td>
-            <td><button class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i>&nbsp;Delete</button>
-                <button class="btn1 btn-success" style="margin-left: 10px"><i class="fa fa-pencil" aria-hidden="true"></i>&nbsp;Update</button>
-                <button class="btn btn-info" style="margin-left: 10px"><i class="fa fa-info" aria-hidden="true"></i>&nbsp;Details</button>
-            </td>
-          </tr>
+         
+          
         </tbody>
       </table>
     </div>

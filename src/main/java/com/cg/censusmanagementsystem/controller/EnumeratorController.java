@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
@@ -58,6 +59,36 @@ public class EnumeratorController {
 		  
 		  }
 		 
+		  
+		  @RequestMapping(value = "/showLoginForm",method=RequestMethod.POST)
+			public ModelAndView getEnumerator(@ModelAttribute(name="enumerator") Enumerator enumerator,Model model ){
+				
+				String username=enumerator.getEmail();
+				String password=enumerator.getPassword();
+				
+				
+				if("pooja18@gmail.com".equals(username) && "Pooja@18".equals(password)) {
+					
+					ModelAndView mav=new ModelAndView("home");
+					return mav;
+					
+				}
+				
+				model.addAttribute("invalidCredentials",true);
+				
+				ModelAndView mav=new ModelAndView("login");
+				return mav;
+				
+			}
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
 		  
 	
 	/*

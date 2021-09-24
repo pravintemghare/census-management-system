@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "census.detailinformation")
+@Table(name = "detailinformation")
 public class Details {
 
 	@Id

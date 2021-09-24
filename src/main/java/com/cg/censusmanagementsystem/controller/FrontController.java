@@ -72,12 +72,12 @@ public class FrontController {
 	}
 	
 	
-	@RequestMapping(value = "/view")
-	public ModelAndView viewPage()
-	{
-		ModelAndView mav=new ModelAndView("view");
-		return mav;
-	}
+	
+	/*
+	 * @RequestMapping(value = "/view") public ModelAndView viewPage() {
+	 * ModelAndView mav=new ModelAndView("view"); return mav; }
+	 */
+	 
 	
 	@RequestMapping(value = "/about")
 	public ModelAndView aboutPage()
