@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "headerinformation")
+@Table(name = "census.headerinformation")
 public class Header {
 
 	@Id
