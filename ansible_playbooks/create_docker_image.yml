@@ -1,0 +1,26 @@
+---
+- hosts: ansible_host
+  become: true
+  vars_files:
+    - docker-vault.yml
+
+  tasks:
+    - name: docker image build
+      command: docker build -t census-mgmt .
+      args:
+        chdir: "{{ workspace_dir }}"
+
+    - name: tag docker image
+      command: "{{ item }}"
+      with_items:
+        - "docker tag census-mgmt ptemghare/census-mgmt:{{ build_tag }}"
+        - "docker tag census-mgmt ptemghare/census-mgmt:latest"
+
+    - name: docker login
+      command: docker login --username {{ username }} --password {{ password }} docker.io
+
+    - name: push docker image to hub.docker.com
+      command: "{{ item }}"
+      with_items:
+        - "docker push ptemghare/census-mgmt:{{ build_tag }}"
+        - "docker push ptemghare/census-mgmt:latest"

@@ -1,0 +1,15 @@
+---
+- name: Kubernetes deploy for Census Application
+  hosts: minikube_host
+  user: minikube
+
+  tasks:
+  - name: Deployment for Census Application
+    command: kubectl apply -f minikube_deployment/census-deployment.yml
+    args:
+      chdir: "{{ workspace_dir }}"
+
+  - name: Service for Census Application
+    command: kubectl apply -f minikube_deployment/census-service.yml
+    args:
+      chdir: "{{ workspace_dir }}"    

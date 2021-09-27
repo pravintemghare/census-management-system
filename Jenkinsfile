@@ -1,5 +1,9 @@
 pipeline {
     agent any
+    environment {
+        BUILD_TAG = sh(returnStdout: true, script: 'git rev-parse HEAD  | head -c 6')  
+    }
+
     stages {
         stage('GitCheckout') {
             steps {
@@ -9,28 +13,29 @@ pipeline {
                 )    
             }
         }
-        stage('ApplicationBuild') {
+        stage('Census_ApplicationBuild') {
             steps {
                 withMaven(maven : 'mvn83') {
                     sh 'mvn -DskipTests=true clean'
                 }
             }
         }
-        stage('ApplicationPackage') {
+        stage('Census_ApplicationPackage') {
             steps {
                 withMaven(maven : 'mvn83'){
                     sh 'mvn -DskipTests=true package'
                 }
             }
         }
-        stage('Ansible_Docker_Image_build') {
+                stage('Ansible-Census_Docker_Build') {
             steps {
-                sshPublisher(publishers: [sshPublisherDesc(configName: 'ansible_host', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: 'ansible-playbook -i /opt/zensus-deploy/hosts /opt/zensus-deploy/create-docker-image.yml --vault-password-file /opt/zensus-deploy/.vault_pass', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '//opt//zensus-deploy', remoteDirectorySDF: false, removePrefix: 'target', sourceFiles: 'target/zensus-0.0.1-SNAPSHOT.war')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
+                ansiblePlaybook become: true, credentialsId: 'ansible_host', extras: '-e build_tag=$BUILD_TAG -e workspace_dir=$WORKSPACE', installation: 'ansible', inventory: 'ansible_playbooks/ansible_hosts', playbook: 'ansible_playbooks/create_docker_image.yml', vaultCredentialsId: 'ansible_vault_password'
             }
         }
-        stage('Ansible_Minikube_Deploy') {
+        stage('Ansible-Census_MiniKube_Deploy') {
             steps {
-                sshPublisher(publishers: [sshPublisherDesc(configName: 'ansible_host', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: '''ansible-playbook -i /opt/zensus-deploy/hosts /opt/zensus-deploy/minikube-census-deploy.yml; ansible-playbook -i /opt/zensus-deploy/hosts /opt/zensus-deploy/minikube-census-service.yml''', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '', remoteDirectorySDF: false, removePrefix: '', sourceFiles: '')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
+                sh 'sed -i "s|docker_tag|$BUILD_TAG|g" minikube_deployment/census-deployment.yml'
+                ansiblePlaybook credentialsId: 'ansible_host', extras: '-e workspace_dir=$WORKSPACE', installation: 'ansible', inventory: 'ansible_playbooks/ansible_hosts', playbook: 'ansible_playbooks/census-minikube-deploy.yml'
             }
         }
     }
