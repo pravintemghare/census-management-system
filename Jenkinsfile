@@ -13,14 +13,14 @@ pipeline {
                 )    
             }
         }
-        stage('Census_ApplicationBuild') {
+        stage('Census_Application_Build') {
             steps {
                 withMaven(maven : 'mvn83') {
                     sh 'mvn -DskipTests=true clean'
                 }
             }
         }
-        stage('Census_ApplicationPackage') {
+        stage('Census_Application_Package') {
             steps {
                 withMaven(maven : 'mvn83'){
                     sh 'mvn -DskipTests=true package'
