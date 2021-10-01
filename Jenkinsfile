@@ -7,10 +7,7 @@ pipeline {
     stages {
         stage('GitCheckout') {
             steps {
-                git(
-                    branch: 'master',
-                    url: 'https://github.com/pravintemghare/census-management-system.git'
-                )    
+                git 'https://github.com/pravintemghare/census-management-system.git'    
             }
         }
         stage('Census_Application_Build') {
