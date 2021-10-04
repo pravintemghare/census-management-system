@@ -3,11 +3,14 @@ package com.cg.censusmanagementsystem.controller;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.cg.censusmanagementsystem.dao.DetailsRepository;
+import com.cg.censusmanagementsystem.dao.HeaderRepository;
 import com.cg.censusmanagementsystem.entities.Details;
 import com.cg.censusmanagementsystem.service.IDetailsService;
 
@@ -19,6 +22,10 @@ public class DetailsController {
 	@Autowired(required=true)
 	public IDetailsService service; 
 	
+
+	@Autowired(required=true)
+	public DetailsRepository repository; 
+
 	
 	@PostMapping("/saveDetails")
 	public ModelAndView saveEnumerator(@ModelAttribute("details") Details details, HttpServletRequest request){
@@ -30,6 +37,14 @@ public class DetailsController {
 		}
 	
 	
+		/*
+		 * @GetMapping("/viewDetails") public ModelAndView getAllDetails(){
+		 * 
+		 * ModelAndView mav=new ModelAndView("details");
+		 * mav.addObject("details",repository.findAll()); return mav;
+		 * 
+		 * }
+		 */
 	
 	
 	

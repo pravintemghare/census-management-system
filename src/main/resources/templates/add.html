@@ -9,6 +9,8 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <title>Census Management System</title>
@@ -28,14 +30,15 @@
     <form action="#" th:action="@{/saveHeader}" th:object="${header}" method="post"
      name="myform" onsubmit="return validm()" class="requires-validation" novalidate>
        
-         <div style="margin-left:20px; margin-top:20px;"><label for="username">Family Identification serial</label> 
-           <input type="integer"   placeholder="Default" id="varchar" name="familyIdentification">
+         <div style="margin-left:20px; margin-top:20px;">
+        <!--  <label for="username">Family Identification serial</label>  -->
+<!--            <input type="integer"   placeholder="Default" id="varchar" name="familyIdentification"> -->
            
-           <span style="margin-left:20%;color:brown;"><b><label for="year">Census Year:</label></b>
+           <span style="margin-left:70%;color:brown;"><b><label for="year">Census Year:</label></b>
            <select name="censusYear" id="year">
             <option value="2021">2021</option>
-            <option value="2015">2015</option>
-            <option value="2010">2010</option>
+            <option value="2015">2011</option>
+            <option value="2010">2001</option>
           
           </select></span><!--census year form end-->
           </div>
@@ -102,7 +105,7 @@
   </div><!--headgenderdiv-->
   <div style="margin-right:30px;margin-left:100px;" class="col-md-2">
     <label for="inputMember" class="form-label">Race</label>
-    <select id="inputMember"- class="form-select" required>
+    <select id="inputMember" class="form-select" name="race" required>
       <option selected disabled value="">Choose</option>
       <option>German</option>
       <option>Turkish</option>
@@ -117,10 +120,10 @@
     </div><!--headRacediv-->
     <div class="col-md-2 form-group">
         <label style="margin-left:20px;margin-bottom:9px;" class="input-label">Age</label>
-          <input type="number" class="form-control" placeholder="value" id="age" name="age" min="1" max="100" required>
+          <input type="number" class="form-control" placeholder="value" id="age" name="age" min="18" max="100" required>
          
           <div class="invalid-feedback">
-             Fill the valid age.
+             Fill the valid age,Age should be atleast 18.
           </div><!--validation age type-->
           </div>
         </div>
@@ -189,16 +192,26 @@
           </div><!--type of work div-->
           <div class="col-md-3">
   
-            <div>
-              <label class="input-label">Wages</label></div>
-            
-            <input style="margin-top:10px" placeholder="Wages"  type="number" name="wages" class="form-control" min="1" step="any"  required/>
-              </div><!--wages div end-->
+           <div>
+           <label class="input-label">Wages(EURO)</label></div>
+           <div class="input-group mb-3">
+           <span style="font-size:20px" class="input-group-text" id="basic-addon1"><b>€</b>
+           </span>
+           <input class="form-control number" name="wages" placeholder="00.00" aria-label="Username" aria-describedby="basic-addon1" pattern="^(\d*\.?\d+|\d{1,3}(,\d{3})*(\.\d+)?)$" required>
+           </div>
+
+
+          </div><!--wages div end-->
+              
+              
+              
+          
+          
         
             
         
       
-    </div>
+          </div>
 
       
       
@@ -214,44 +227,215 @@
                     
                     <div style="margin-top:20px;" class="col-md-5 form-group">
                       <label for="inputCity" class="form-label">City</label>
-                      <input type="text" class="form-control" id="inputCity" name="city" autocomplete="off" required>
+                      <select id="inputState" name="city" class="form-select" required>
+                        <option selected disabled value="">Choose...</option>
+                        <option>berlin</option>
+                        <option>hamburg</option>
+                        <option>munich</option>
+                        <option>leipzig</option>
+                       </select>
                       
                     </div>
                     <div style="margin-top:20px;"class="col-md-3">
                       <label for="inputState" class="form-label">State</label>
                       <select id="inputState" name="state" class="form-select" required>
                         <option selected disabled value="">Choose...</option>
-                        <option>Baden-Württemberg</option>
-                        <option>Bavaria</option>
-                        <option>Berlin</option>
-                        <option>Lower Saxony</option>
-                        <option>Saarland</option>
-                      </select>
+                        <option>berlin</option>
+                        <option>hamburg</option>
+                        <option>baveria</option>
+                        <option>saxony</option>
+                       </select>
                     </div>
                    </div><!--contact div ended-->
                     <hr size="3" width="100%" color="gray"> <!--line--> 
     <h4 style="text-align:center"><i><u>Family Details</u></i></h4> <!--start of Family Details-->
-    <div style="margin-left:100px; margin-top:20px; margin-bottom:30px;" class="row">
+    
+    
+          
+        <div style="margin-left:100px; margin-top:20px;" class="row">
+        <div class="col-md-4">
+          <label style="margin-bottom:10px;" class="form-label" for="name" ><b>Name of the Member:</b></label>
+          <div style="width:400px">
+            <input type="text" class="form-control"  id="name" name="nameOfMember" placeholder="Name of the head" autocomplete="off" required >
+            <span id="fname" class="text-danger"></span>
+            <div  class="invalid-feedback"><!--validationfirstname -->
+              Please enter valid Firstname
+            </div>
+            <div class="valid-feedback"><!--validationb first name-->
+                
+              </div>
+              </div>
+        </div>
+          
+        <div class="col-md-4" style="margin-left:150px; margin-top:1px;">
+          <label for="inputMember" class="form-label">Relation</label>
+      <select id="inputMember" class="form-select" name="relation" required>
+      <option selected disabled value="">Choose</option>
+      <option>Mother</option>
+      <option>Father</option>
+      <option>Wife</option>
+      <option>Son </option>
+      <option>Daughter</option>
+       
+    </select>
+    <div class="invalid-feedback">
+         Select a valid relation.
+      </div><!--validation nationality-->
+    </div><!--headRacediv-->
+          
+          </div>
+       
+        
+        
+        
+        
+        
+        
+
+            <!--start ofnid form -->
+  <div style="margin-left:100px; margin-top:20px;" class="row">
+    <div style="width:500px">
+          <label style="margin-bottom:10px;"for="nidno" class="form-label">National Identification Id No.(Idqr)</label>
+        <input type="number" id="nidno"  name="didqr" class="form-control" placeholder="nid no." autocomplete="off" required>
+        <span id="idn" class="text-danger"></span>
+        <div  class="invalid-feedback"><!--validation lastname-->
+            please fill the nidno
+        </div>
+      </div>
+  </div><!--headend of nidno div-->
+  
+  <!--gender and age div start-->
+<div style="margin-left:100px; margin-top:20px;"role="form" data-toggle="validator" class="row">
+    <div class="col-md-4">
+      <div>
+      <label for="inputMember" class="form-label">Gender</label>
+      </div><!--Gender label div-->
+      <div class="form-check-inline col-md-4">
+        <input class="form-check-input" type="radio" name="dgender" value="Male" id="flexRadioDefault1" required>
+        <label class="form-check-label" for="gender" >
+          Male
+        </label>
+      </div><!--firstradio-->
       
-      <label style="margin-top:5px" class="input-label col-sm-3"><b>Number of family members</b></label>
-      <div style="margin-left:0px;" class="col-sm-2">
-  <input type="number" class="form-control" placeholder="0"id="age" name="familyCount" min="1" max="100" required>
-  </div>
-  </div><!--family div ended-->
- 
-    <!--headformtype-->
-    <!--Modal-->
-<!-- Button trigger modal -->
-<div class="pb-4  rounded">
-    <div class="row">
-    <div style="margin-left:100px" class="col-md-8">
-    <button style="margin-right:20px"type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-      <i class="fa fa-user-plus"></i> Add Member
-    </button>
-    <button  type="button" class="btn btn-secondary btn-sm"><i class="fa fa-pencil" aria-hidden="true"></i>Edit</button>
-    </div></div></div>
-    <hr size="3" width="100%" color="gray"> <!--line-->
+      <div class="form-check-inline col-md-4">
+        <input class="form-check-input" type="radio" name="dgender" value="Female" id="flexRadioDefault2" required>
+        <label class="form-check-label" for="gender">
+          Female
+        </label>
+        
+      </div><!--radiodiv-->
+  
+      
+  </div><!--headgenderdiv-->
+  <div style="margin-right:30px;margin-left:100px;" class="col-md-2">
+    <label for="inputMember" class="form-label">Race</label>
+    <select id="inputMember" name="drace" class="form-select" required>
+      <option selected disabled value="">Choose</option>
+      <option>German</option>
+      <option>Turkish</option>
+      <option>Polish</option>
+      <option>Syrian </option>
+      <option>Others</option>
+       
+    </select>
+    <div class="invalid-feedback">
+         Select a valid state.
+      </div><!--validation nationality-->
+    </div><!--headRacediv-->
+    <div class="col-md-2 form-group">
+        <label style="margin-left:20px;margin-bottom:9px;" class="input-label">Age</label>
+          <input type="number" class="form-control" placeholder="value" id="age" name="dage" min="1" max="100" required>
+         
+          <div class="invalid-feedback">
+             Fill the valid age.
+          </div><!--validation age type-->
+          </div>
+        </div>
+        <!--headgender and age,race div end-->
+        <!--headdatepicker,maritalstart-->
+<div role="form" data-toggle="validator" style="margin-left:100px; margin-top:20px;margin-bottom:15px;" class="row">
+    <div style=margin-right:10px; class="col-md-5">
+      <label style="margin-bottom:20px;" class="input-label">Date of Birth</label>
+    <input type="date" class="form-control" id="birthday" name="ddateOfBirth" required>
+    <div class="invalid-feedback">
+        Please fill the Date of birth
+      </div><!--validation age type-->
+    </div>
+    <!--headMaritaldiv start-->
+    <div class="col-md-6">
+      <div>
+      <label style="margin-bottom:20px;"  for="inputMember" class="form-label">Marital Status</label>
+      </div><!--marital label div-->
+      <div class="form-check-inline col-md-3">
+        <input class="form-check-input" type="radio" name="dmaritalStatus" value=" Married" id="flexRadioDefaultb1" required>
+        <label class="form-check-label" for="flexRadioDefault1">
+          Married
+        </label>
+      </div><!--maritalfirstradio-->
+      
+      <div class="form-check-inline col-md-3">
+        <input class="form-check-input" type="radio" name="dmaritalStatus" value=" Unmarried" id="flexRadioDefaultb2" required>
+        <label class="form-check-label" for="flexRadioDefault2">
+          Unmarried
+        </label></div><!--marital second div-->
+        <div class="form-check-inline col-md-3">
+          <input class="form-check-input" type="radio" name="dmaritalStatus" value=" Divorced" id="flexRadioDefaultb3" required>
+          <label class="form-check-label" for="flexRadioDefaultb3">
+            Divorced
+          </label>
+        
+      </div><!--maritalradiodiv-->
+      </div><!--total marital block end-->
+    </div><!--headdatepicker,marital--><!--headpersonal details-->
+    <!--start of education,wages,type of work div-->
+    <div style="margin-left:100px; margin-top:20px;margin-bottom: 30px;" class="row">
+      <div class="col-md-4">
+        <label for="inputMember" class="form-label">Education</label>
+        <select id="inputMember" name="deducation" class="form-select" required>
+          <option selected disabled value="">Choose</option>
+          <option>Hauptschule </option>
+          <option>Realschule</option>
+          <option> Gymnasium</option>
+          <option>Gesamtschule  </option>
+          <option>Others</option>
+           
+        </select>
+        
+        </div><!--educationdiv-->
+        <div class="col-md-3">
+          <label for="inputMember" class="form-label">Type of work</label>
+          <select id="inputMember" name="dprofession" class="form-select" required>
+            <option selected disabled value="" >Choose</option>
+            <option>Public sector</option>
+            <option>Private sector</option>
+            <option>Unemployed</option>
+            <option>Others</option>
+             
+          </select>
+          
+          </div><!--type of work div-->
+         
+          
+          <div class="col-md-3">
+  
+           <div>
+           <label class="input-label">Wages(EURO)</label></div>
+           <div class="input-group mb-2">
+           <span style="font-size:20px" class="input-group-text" id="basic-addon1"><b>€</b>
+           </span>
+           <input class="form-control number" name="dwages" placeholder="00.00" aria-label="Username" aria-describedby="basic-addon1" pattern="^(\d*\.?\d+|\d{1,3}(,\d{3})*(\.\d+)?)$" required>
+           </div>
+
+
+          </div><!--wages div end-->
+          </div>
+   
+   
+   
+   <hr size="3" width="100%" color="gray"> <!--line-->
     <!--formfooter start-->
+    
+    
     <div class="col-12">
       <div class="form-check">
         <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
@@ -264,8 +448,9 @@
       </div>
     </div>
     
-  </form><!--head form ended-->
-        <div style="margin-left:45%;" class="col-12">
+ </form>
+  
+         <div style="margin-left:45%;" class="col-12">
             <button class="btn btn-primary" type="submit">Submit</button>
           </div>
         </body>
@@ -276,189 +461,7 @@
 <!--formfooterended-->
 
 
-<!--Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">New Member</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-      
-        <div class="modal-body">
-          <form action="#" th:action="@{/saveDetails}" th:object="${details}" method="post"
-          name="childform" onsubmit="return validc()" class="requires-validation" novalidate>
 
-      
-        <div style="margin-top:20px;"><label for="username">Family Identification serial</label> 
-           <input type="integer" placeholder="" id="varchar" name="familyIdentification"
-           style="width:40px;">
-           
-           <span style="margin-left:30px;color:brown;"><b><label for="year">Census Year:</label></b>
-           <select name="censusYear" id="year">
-            <option value="2021">2021</option>
-            <option value="2015">2015</option>
-            <option value="2010">2010</option>
-          
-          </select></span><!--census year form end-->
-          </div>
-      
-      
-      <br>
-      
-      
-      
-      <div class="row">
-      <div class="col">
-      <label for="name" class="input-label">Full name</label>
-      <input type="text" name="nameOfMember" id="namec" class="form-control" placeholder="First name" aria-label="First name" autocomplete="off" required>
-      <span id="fnamec" class="text-danger"></span>
-      <div class="invalid-feedback">
-        Fill the Fullname
-      </div>
-    </div>
-    <div class="col">
-      <label for="lastnamec" class="input-label">National Identification Id No.</label>
-      <input name="idqr" id="lastnamec" type="text" class="form-control" placeholder="Idqr no." aria-label="Last name" autocomplete="off" required>
-      <span id="lnamec" class="text-danger"></span>
-      <div class="invalid-feedback">
-        Fill the Idqr no.
-      </div>
-    </div>
-  </div>
-  
-  <div  role="form" data-toggle="validator" style="Margin-top:20px"  class="row">
-  <div class="col-md-6">
-      <label for="inputMember" class="form-label">Relation</label>
-      <select name="relation" id="inputMember" class="form-select" required>
-        <option selected disabled value="">Choose</option>
-        <option>Wife</option>
-        <option>Mother</option>
-        <option>Father</option>
-        <option>Son</option>
-        <option>Daughter</option>
-         <option>Brother</option>
-         <option>Sister</option>
-      </select></div><!--member div-->
-  <div class="col-md-6">
-  <div>
-  <label for="inputMember" class="form-label">Gender</label>
-  </div><!--Gender label div-->
-  <div class="form-check-inline col-md-4">
-    <input class="form-check-input" type="radio" name="gender" value=" Male" id="flexRadioDefault11" required>
-    <label class="form-check-label" for="flexRadioDefault1">
-      Male
-    </label>
-  </div><!--firstradio-->
-  
-  <div class="form-check-inline col-md-4">
-    <input class="form-check-input" type="radio" name="gender" value="Female" id="flexRadioDefault22" required>
-    <label class="form-check-label" for="flexRadioDefault2">
-      Female
-    </label>
-  </div><!--radiodiv-->
-    </div><!--member,radio div-->
-  <div style="margin-top:20px" class="row">
-    <div style=margin-right:10px; class="col">
-       <label for="birthday" class="input-label">Date of Birth</label>
-  <input type="date" class="form-control" id="birthdayc" name="dateOfBirth" required>
-  </div><!--datepickerend-->
-  <div class="col-md-4">
-  <label style="margin-left:10px" class="input-label">Age</label>
-    <input type="number"placeholder="value" class="form-control" id="age" name="age" min="1" max="100" required>
-    </div>
-  
-  </div><!--datepickerend,age-->
-  <div style="margin-top:20px;" class="row"><!--start of maritaldiv,racediv-->
-  <div class="col-md-12">
-  <div>
-  <label for="inputMember" class="form-label">Marital Status</label>
-  </div><!--marital label div-->
-  <div class="form-check-inline col-md-3">
-    <input class="form-check-input" type="radio" value="Married" name="maritalStatus" id="flexRadioDefault1"required>
-    <label class="form-check-label" for="flexRadioDefault1">
-      Married
-    </label>
-  </div><!--maritalfirstradio-->
-  
-  <div class="form-check-inline col-md-3">
-    <input class="form-check-input" type="radio" value="Unmarried" name="maritalStatus" id="flexRadioDefault2" required>
-    <label class="form-check-label" for="flexRadioDefault2">
-      Unmarried
-    </label></div><!--marital second div-->
-    <div class="form-check-inline col-md-3">
-      <input class="form-check-input" type="radio" value="Divorced" name="maritalStatus" id="flexRadioDefault3" required>
-      <label class="form-check-label" for="flexRadioDefault2">
-        Divorced
-      </label>
-    
-  </div><!--maritalradiodiv-->
-  </div></div><!--total marital block end-->
-  <!--Start of race block-->
-  <div style="margin-top:20px;" class="row">
-  <div class="col-md-6">
-    <label for="inputMember" class="form-label">Race</label>
-    <select name="race" id="inputMember" class="form-select" required>
-      <option selected disabled value="">Choose</option>
-      <option>German</option>
-      <option>Turkish</option>
-      <option>Polish</option>
-      <option>Syrian </option>
-      <option>Others</option>
-       
-    </select></div><!--Race-->
-    <div class="col-md-6">
-      <label for="inputMember" class="form-label">Education</label>
-      <select name="education" id="inputMember" class="form-select" required>
-        <option selected disabled value="">Choose</option>
-        <option>Hauptschule</option>
-        <option>Realschule </option>
-        <option>Gymnasium</option>
-        <option>Gesamtschule </option>
-        <option>Others</option>
-         
-      </select>
-      
-      </div><!--educationdiv-->
-    
-  <div style="margin-top:20px;" class="row">
-    <div class="col-md-8">
-      <label for="inputMember" class="form-label">Type of work</label>
-      <select name="profession" id="inputMember" class="form-select" required>
-        <option selected disabled value="" >Choose</option>
-        <option>Public sector</option>
-        <option>Private sector</option>
-        <option>Unemployed</option>
-        <option>Others</option>
-         
-      </select>
-      
-      </div><!--type of work div-->
-  <div class="col-md-4">
-  
-      <div>
-        <label class="input-label">Wages</label></div>
-      
-      <input style="margin-top:10px" placeholder="Wages"  type="number" name="wages" class="form-control" min="1" step="any"  required/>
-        </div><!--wages div end-->
-  
-      </div>
-  
-        </div><!--modal div closed-->
-        <div style="margin-top:20px;" class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-primary">Save</button>
-        </div>
-      </div>
-      </form>
-    </div>
-  </div>
-  </div><!--form box-->
-
-  
-        
-      </div><!--firstnamelastnamedivended-->
-      
 
 
 
@@ -471,105 +474,93 @@
       
       <!--start of script-->
      <script>
-         function validm(){
-                     var Firstname=document.getElementById('name').value;
-                     var Lastname=document.getElementById('lastname').value;
-                     var nid=document.getElementById('nidno').value;
-                     var phoneno=document.myform.phone1.value;
-                     var landlineno=document.myform.landline.value;
-                     var zipno=document.myform.inputZip.value;
 
-                     var pattern=/^[0-9]{3}-[0-9]{3}-[0-9]{4}$/;
-                     var pattern1= /^\d{6}$/;
-                     var pattern2=/^[0-9]{2,3}-[0-9]{5,8}$/;
+     //wages validation
+     $('input.number').keyup(function(event) {
 
-    if((Firstname.length <2) || (Firstname.length>20)){
-        document.getElementById('fname').innerHTML="First name length should be between 2 to 20";
-        return false;
-    
+    	 // skip for arrow keys
+    	if(event.which >= 37 && event.which <= 40){
+    	event.preventDefault();
+    	}
+
+    	 $(this).val(function(index, value) {
+    	value = value.replace(/,/g,''); // remove commas from existing input
+    	return numberWithCommas(value); // add commas back in
+    	});
+    	});
+
+    	function numberWithCommas(x) {
+    	var parts = x.toString().split(".");
+    	parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    	return parts.join(".");
+    	}
+     
+     
+     
+     
+//datepicker validation
+var todayDate = new Date();
+var month = todayDate.getMonth() + 1;
+var year = todayDate.getUTCFullYear();
+var tdate = todayDate.getDate();
+if (month < 10){
+  month="0" + month;
+}
+if(tdate < 10){
+  tdate = "0" + tdate; 
+}
+var maxDate=year + "-" + month + "-" +tdate;
+document.getElementById("birthday").setAttribute("max",maxDate);
+//datepicker validation end
+  function validm(){
+              var Firstname=document.getElementById('name').value;
+              var nid=document.getElementById('nidno').value;
+              
+              
+
+if((Firstname.length <2) || (Firstname.length>20)){
+ document.getElementById('fname').innerHTML="Full name length should be between 2 to 20";
+ return false;
+
 }
 
 
- if(!isNaN(Firstname))
+if(!isNaN(Firstname))
 {
-    document.getElementById('fname').innerHTML="First name not valid";
-    return false;
-        
+document.getElementById('fname').innerHTML="First name not valid";
+return false;
+ 
 }else{
-  document.getElementById('fname').innerHTML="";
-  
+document.getElementById('fname').innerHTML="";
+
 }
 
 
 
 //firstname validationcomplete
-    
- if((Lastname.length <2) || (Lastname.length>20)){
-        document.getElementById('lname').innerHTML="Last name length should be  between 2 to 20";
-        return false;
-    
-}
- if(!isNaN(Lastname))
+//nid
+if((nid.length<1) || (nid.length>100)) 
 {
-    document.getElementById('lname').innerHTML="Last name not valid";
+    document.getElementById('idn').innerHTML="Nid should be a number";
     return false;
-        
-}else{
-  document.getElementById('lname').innerHTML="";
-  
 }
-//lastname valiation complete
- if((nid.length<6) || (nid.length>6)) 
+if(isNaN(nid))
 {
-    document.getElementById('idn').innerHTML="Nid should be of 6 length number";
-    return false;
-}else{
+document.getElementById('fname').innerHTML="nid  not valid";
+return false;
+}
+else{
   document.getElementById('idn').innerHTML="";
   
-}
- if(!pattern.test(phoneno))
-{
-    document.getElementById('phoneid').innerHTML="Must enter 10 digit number";
-    return false;
+}//nid
 
-}else{
-  document.getElementById('phoneid').innerHTML="";
+}
+function validc(){
+  var Firstnamec=document.getElementById('namec').value;
+  var nidc=document.getElementById('nidnoc').value;
   
-}
- if(!pattern2.test(landlineno)){
-    document.getElementById('landlineid').innerHTML="Landline no. should be of valid digit number";
-    return false;
-
-
-}else{
-  document.getElementById('landlineid').innerHTML="";
   
-}
- if(!pattern1.test(zipno)){
-    document.getElementById('zipid').innerHTML="zip is invaid";
-    return false;
-
-}else{
-  document.getElementById('zipid').innerHTML="";
-  
-}
-         }//head form validations
-
-        
-         //child form validation start
-
-         function validc(){
-                     var Firstnamec=document.getElementById('namec').value;
-                     var Lastnamec=document.getElementById('lastnamec').value;
-                     var nid=document.getElementById('nidno').value;
-                     var phoneno=document.myform.phone1.value;
-                     var landlineno=document.myform.landline.value;
-                     var zipno=document.myform.inputZip.value;
-
-                     var pattern=/^[0-9]{3}-[0-9]{3}-[0-9]{4}$/;
-                     var pattern1= /^\d{5}$/;
-
-    if((Firstnamec.length <2) || (Firstnamec.length>20)){
+  if((Firstnamec.length <2) || (Firstnamec.length>20)){
         document.getElementById('fnamec').innerHTML="first name length between 2 to 20";
         return false;
     
@@ -585,81 +576,27 @@
   document.getElementById('fnamec').innerHTML="";
   
 }
-
-
-
 //firstname validationcomplete
+//nidvalidation
+if((nidc.length<1) || (nidc.length>100)) 
+{
+    document.getElementById('idnc').innerHTML="nid should be a number";
+    return false;
+}else{
+  document.getElementById('idnc').innerHTML="";
+  
+}
     
- if((Lastnamec.length <2) || (Lastnamec.length>20)){
-        document.getElementById('lnamec').innerHTML="last name length between 2 to 20";
-        return false;
-    
-}
- if(!isNaN(Lastnamec))
-{
-    document.getElementById('lnamec').innerHTML="last name not valid";
-    return false;
-        
-}else{
-  document.getElementById('lnamec').innerHTML="";
-  
-}
-//lastname valiation complete
- if((nid.length<6) || (nid.length>6)) 
-{
-    document.getElementById('idn').innerHTML="nid should be of 6 length number";
-    return false;
-}else{
-  document.getElementById('idn').innerHTML="";
-  
-}
- if(!pattern.test(phoneno))
-{
-    document.getElementById('phoneid').innerHTML="user must enter 10 digit number";
-    return false;
-
-}else{
-  document.getElementById('phoneid').innerHTML="";
-  
-}
- if(!pattern1.test(landlineno)){
-    document.getElementById('landlineid').innerHTML="landline no. should be of 5 digit number";
-    return false;
-
-
-}else{
-  document.getElementById('landlineid').innerHTML="";
-  
-}
- if(!pattern1.test(zipno)){
-    document.getElementById('zipid').innerHTML="zip is invaid";
-    return false;
-
-}else{
-  document.getElementById('zipid').innerHTML="";
-  
-}
-         }//child form validations
-
-//datepicker validation
-var todayDate = new Date();
-var month = todayDate.getMonth() + 1;
-var year = todayDate.getUTCFullYear();
-var tdate = todayDate.getDate();
-if (month < 10){
-  month="0" + month;
-}
-if(tdate < 10){
-  tdate = "0" + tdate; 
-}
-var maxDate=year + "-" + month + "-" +tdate;
-document.getElementById("birthdayc").setAttribute("max",maxDate);
-document.getElementById("birthday").setAttribute("max",maxDate);
-//datepicker validation end
 
 
 
-     (function () {
+
+}
+
+
+
+//mainjs validation
+(function () {
         'use strict'
         const forms = document.querySelectorAll('.requires-validation')
         Array.from(forms)
@@ -677,14 +614,22 @@ document.getElementById("birthday").setAttribute("max",maxDate);
             }, false)
           })
         })()
+      
+        
+        //modaljs
         var myModal = document.getElementById('myModal')
-var myInput = document.getElementById('myInput')
+        var myInput = document.getElementById('myInput')
 
-myModal.addEventListener('shown.bs.modal', function () {
-  myInput.focus()
-})//modal js
+        myModal.addEventListener('shown.bs.modal', function () {
+        myInput.focus()
+})
+  
 
-</script>
+
+  
+
+ </script>
+
     
 </body>
 </html>

@@ -7,9 +7,10 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "detailinformation")
+@Table(name = "census.detailinformation")
 public class Details {
 
+	//Header
 	@Id
 	private int familyIdentification;
 	private String nameOfMember;
@@ -23,7 +24,10 @@ public class Details {
 	private String education;
 	private Date dateOfBirth;
 	private String maritalStatus;
-	private int censusYear;
+	
+	//Header
+	
+	
 	
 	public Details() {
 		super();
@@ -126,13 +130,6 @@ public class Details {
 		this.maritalStatus = maritalStatus;
 	}
 
-	public int getCensusYear() {
-		return censusYear;
-	}
-
-	public void setCensusYear(int censusYear) {
-		this.censusYear = censusYear;
-	}
 	
 	
 	
