@@ -1,5 +1,7 @@
 package com.cg.censusmanagementsystem.service;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
@@ -45,12 +47,16 @@ public class EnumeratorServiceImpl implements IEnumeratorService {
 	
 	@Override
 	public Enumerator getEnumerator(String email, String password) {
-		
-		Enumerator enumerator=(Enumerator)repository.findById(email).get();
-		if(enumerator.getPassword().equals(password)) {
-			return enumerator;
+		Optional<Enumerator> enumerator = repository.findByEmailAndPassword(email, password);
+		if(enumerator.isPresent()) {
+			return enumerator.get();
 		}
 		return null;
+//		Enumerator enumerator=(Enumerator)repository.findById(email).get();
+//		if(enumerator.getPassword().equals(password)) {
+//			return enumerator;
+//		}
+//		return null;
 	
 
 }

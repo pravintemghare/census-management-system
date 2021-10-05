@@ -36,13 +36,22 @@
 <script>
 Highcharts.chart('container', {
     chart: {
-        type: 'bar'
+        type: 'column'
     },
     title: {
         text: 'Population pyramid for Germany,Agegroup(1-30)'
     },
+    subtitle: {
+        text: ''
+    },
     xAxis: {
-        categories: ['2001', '2011', '2021'],
+        categories: [
+            '2001',
+            '2011',
+            '2021',
+     
+        ],
+        crosshair: true,
         title: {
             text: 'Census Year'
         }
@@ -53,24 +62,31 @@ Highcharts.chart('container', {
             text: 'Population'
         }
     },
-    legend: {
-        reversed: true
+    tooltip: {
+        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+            '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+        footerFormat: '</table>',
+        shared: true,
+        useHTML: true
     },
     plotOptions: {
-        series: {
-            stacking: 'normal'
+        column: {
+            pointPadding: 0.2,
+            borderWidth: 0
         }
     },
     series: [{
-        name: 'Female',
+        name: 'Male',
         data: [[${age}]]
-    },{
-        name: '	Male',
+
+    }, {
+        name: 'Female',
         data: [[${age2}]]
-    }, 
-    
-    ]
+
+    }]
 });
+              
 </script>
 
 
@@ -86,13 +102,22 @@ Highcharts.chart('container', {
 <script>
 Highcharts.chart('container1', {
     chart: {
-        type: 'bar'
+        type: 'column'
     },
     title: {
         text: 'Population pyramid for Germany,Agegroup(31-100)'
     },
+    subtitle: {
+        text: ''
+    },
     xAxis: {
-        categories: ['2001', '2011', '2021'],
+        categories: [
+            '2001',
+            '2011',
+            '2021',
+     
+        ],
+        crosshair: true,
         title: {
             text: 'Census Year'
         }
@@ -103,23 +128,29 @@ Highcharts.chart('container1', {
             text: 'Population'
         }
     },
-    legend: {
-        reversed: true
+    tooltip: {
+        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+            '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+        footerFormat: '</table>',
+        shared: true,
+        useHTML: true
     },
     plotOptions: {
-        series: {
-            stacking: 'normal'
+        column: {
+            pointPadding: 0.2,
+            borderWidth: 0
         }
     },
     series: [{
+        name: 'Male',
+        data: [[${age3}]]
+
+    }, {
         name: 'Female',
         data: [[${age4}]]
-    },{
-        name: '	Male',
-        data: [[${age3}]]
-    }, 
-    
-    ]
+
+    }]
 });
               
 </script>
