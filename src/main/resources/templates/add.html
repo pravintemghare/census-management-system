@@ -54,10 +54,10 @@
         <div style="margin-left:100px; margin-top:20px;" class="row">
           <label style="margin-bottom:10px;" class="form-label" for="name" ><b>Name of the Head:</b></label>
           <div style="width:500px">
-            <input type="text" class="form-control"  id="name" name="headOfFamily" placeholder="Name of the head" autocomplete="off" required >
-            <span id="fname" class="text-danger"></span>
+            <input type="text" class="form-control"  id="name" name="headOfFamily" placeholder="Name of the head" autocomplete="off"  required >
+            <span style="font-size:14px;" id="fname" class="text-danger"></span>
             <div  class="invalid-feedback"><!--validationfirstname -->
-              Please enter valid Firstname
+              Please enter valid Fullname
             </div>
             <div class="valid-feedback"><!--validationb first name-->
                 
@@ -72,10 +72,10 @@
   <div style="margin-left:100px; margin-top:20px;" class="row">
     <div style="width:500px">
           <label style="margin-bottom:10px;"for="nidno" class="form-label">National Identification Id No.(Idqr)</label>
-        <input type="number" id="nidno"  name="idqr" class="form-control" placeholder="nid no." autocomplete="off" required>
-        <span id="idn" class="text-danger"></span>
+        <input type="text" id="nidno"  name="idqr" class="form-control" placeholder="nid no." autocomplete="off" pattern="^\d{6}$" required>
+        
         <div  class="invalid-feedback"><!--validation lastname-->
-            please fill the nidno
+            Nid should be a 6 digit number
         </div>
       </div>
   </div><!--headend of nidno div-->
@@ -254,12 +254,12 @@
           
         <div style="margin-left:100px; margin-top:20px;" class="row">
         <div class="col-md-4">
-          <label style="margin-bottom:10px;" class="form-label" for="name" ><b>Name of the Member:</b></label>
+          <label style="margin-bottom:10px;" class="form-label" for="namec" ><b>Name of the Member:</b></label>
           <div style="width:400px">
-            <input type="text" class="form-control"  id="name" name="nameOfMember" placeholder="Name of the Member" autocomplete="off" required >
-            <span id="fname" class="text-danger"></span>
+            <input type="text" class="form-control"  id="namec" name="nameOfMember" placeholder="Name of the Member" autocomplete="off" required >
+            <span style="font-size:14px" id="fnamec" class="text-danger"></span>
             <div  class="invalid-feedback"><!--validationfirstname -->
-              Please enter valid Firstname
+              Please enter valid Fullname
             </div>
             <div class="valid-feedback"><!--validationb first name-->
                 
@@ -298,10 +298,10 @@
   <div style="margin-left:100px; margin-top:20px;" class="row">
     <div style="width:500px">
           <label style="margin-bottom:10px;"for="nidno" class="form-label">National Identification Id No.(Idqr)</label>
-        <input type="number" id="nidno"  name="didqr" class="form-control" placeholder="nid no." autocomplete="off" required>
+        <input type="text" id="nidno"  name="didqr" class="form-control" placeholder="nid no." autocomplete="off" pattern="^\d{6}$" required>
         <span id="idn" class="text-danger"></span>
         <div  class="invalid-feedback"><!--validation lastname-->
-            please fill the nidno
+             Nid should be a 6 digit number
         </div>
       </div>
   </div><!--headend of nidno div-->
@@ -541,6 +541,26 @@ document.getElementById('fname').innerHTML="";
 
 
 //firstname validationcomplete
+    if((Firstnamec.length <2) || (Firstnamec.length>20)){
+ document.getElementById('fnamec').innerHTML="Full name length should be between 2 to 20";
+ return false;
+
+}
+
+
+if(!isNaN(Firstnamec))
+{
+document.getElementById('fnamec').innerHTML="Full name not valid";
+return false;
+ 
+}else{
+document.getElementById('fnamec').innerHTML="";
+
+}
+
+
+
+//firstnamed validationcomplete
 //nid
 if((nid.length<1) || (nid.length>100)) 
 {
