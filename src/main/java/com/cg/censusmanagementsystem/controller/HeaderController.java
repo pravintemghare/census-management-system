@@ -1,6 +1,7 @@
 package com.cg.censusmanagementsystem.controller;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -36,7 +37,7 @@ public class HeaderController {
 	public ModelAndView saveEnumerator(@ModelAttribute("header") Header header, HttpServletRequest request){
 			
 			service.saveHeader(header);
-			ModelAndView mav=new ModelAndView("add"); 
+			ModelAndView mav=new ModelAndView("success"); 
 			return mav; 
 			
 		}
@@ -50,6 +51,21 @@ public class HeaderController {
 		return mav;
 		
 	}
+	
+	@GetMapping("/viewDetails")
+	public ModelAndView getAllDetails(){
+		
+		ModelAndView mav=new ModelAndView("details");
+		mav.addObject("headers",repository.findAll());
+		return mav;
+		
+	}
+	
+	
+	
+	  
+	 
+	
 	
 	
 }

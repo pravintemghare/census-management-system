@@ -2,18 +2,24 @@ package com.cg.censusmanagementsystem.entities;
 
 import java.sql.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "census.headerinformation")
 public class Header {
 
+	//Header
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int familyIdentification;
 	private String headOfFamily;
-	private int familyCount;
 	private int idqr;
 	private String gender;
 	private String address;
@@ -21,12 +27,26 @@ public class Header {
 	private String state;
 	private String race;
 	private int age;
-	private int wages;
+	private String wages;
 	private String profession;
 	private String education;
 	private Date dateOfBirth;
 	private String maritalStatus;
 	private int censusYear;
+	
+	//Details
+	private String nameOfMember;
+	private String relation;
+	private int didqr;
+	private String drace;
+	private String dgender;
+	private int dage;
+	private String dwages;
+	private String dprofession;
+	private String deducation;
+	private Date ddateOfBirth;
+	private String dmaritalStatus;
+	
 	
 	
 	public Header() {
@@ -52,16 +72,6 @@ public class Header {
 
 	public void setHeadOfFamily(String headOfFamily) {
 		this.headOfFamily = headOfFamily;
-	}
-
-
-	public int getFamilyCount() {
-		return familyCount;
-	}
-
-
-	public void setFamilyCount(int familyCount) {
-		this.familyCount = familyCount;
 	}
 
 
@@ -134,13 +144,26 @@ public class Header {
 	}
 
 
-	public int getWages() {
+	
+
+
+	public String getWages() {
 		return wages;
 	}
 
 
-	public void setWages(int wages) {
+	public void setWages(String wages) {
 		this.wages = wages;
+	}
+
+
+	public String getDwages() {
+		return dwages;
+	}
+
+
+	public void setDwages(String dwages) {
+		this.dwages = dwages;
 	}
 
 
@@ -192,7 +215,110 @@ public class Header {
 	public void setCensusYear(int censusYear) {
 		this.censusYear = censusYear;
 	}
+
+
+	public String getNameOfMember() {
+		return nameOfMember;
+	}
+
+
+	public void setNameOfMember(String nameOfMember) {
+		this.nameOfMember = nameOfMember;
+	}
+
+
+	public String getRelation() {
+		return relation;
+	}
+
+
+	public void setRelation(String relation) {
+		this.relation = relation;
+	}
+
+
+	public int getDidqr() {
+		return didqr;
+	}
+
+
+	public void setDidqr(int didqr) {
+		this.didqr = didqr;
+	}
+
+
+	public String getDrace() {
+		return drace;
+	}
+
+
+	public void setDrace(String drace) {
+		this.drace = drace;
+	}
+
+
+	public String getDgender() {
+		return dgender;
+	}
+
+
+	public void setDgender(String dgender) {
+		this.dgender = dgender;
+	}
+
+
+	public int getDage() {
+		return dage;
+	}
+
+
+	public void setDage(int dage) {
+		this.dage = dage;
+	}
+
+
 	
+
+	public String getDprofession() {
+		return dprofession;
+	}
+
+
+	public void setDprofession(String dprofession) {
+		this.dprofession = dprofession;
+	}
+
+
+	public String getDeducation() {
+		return deducation;
+	}
+
+
+	public void setDeducation(String deducation) {
+		this.deducation = deducation;
+	}
+
+
+	public Date getDdateOfBirth() {
+		return ddateOfBirth;
+	}
+
+
+	public void setDdateOfBirth(Date ddateOfBirth) {
+		this.ddateOfBirth = ddateOfBirth;
+	}
+
+
+	public String getDmaritalStatus() {
+		return dmaritalStatus;
+	}
+
+
+	public void setDmaritalStatus(String dmaritalStatus) {
+		this.dmaritalStatus = dmaritalStatus;
+	}
+
+
 	
 	
 	
