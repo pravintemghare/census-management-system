@@ -1,6 +1,7 @@
 package com.cg.censusmanagementsystem.controller;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -50,6 +51,21 @@ public class HeaderController {
 		return mav;
 		
 	}
+	
+	@GetMapping("/viewDetails")
+	public ModelAndView getAllDetails(){
+		
+		ModelAndView mav=new ModelAndView("details");
+		mav.addObject("headers",repository.findAll());
+		return mav;
+		
+	}
+	
+	
+	
+	  
+	 
+	
 	
 	
 }
