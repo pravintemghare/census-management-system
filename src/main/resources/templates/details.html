@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Census Management System</title>
+<!-- Bootstrap CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+
+<div th:replace="navbar::header"></div>
+
+<div th:replace="dashboard::dashboard"></div>
+
+
+<div class="panel panel-primary">
+
+
+
+
+    <div class="panel-heading">
+      <h5>Users List</h5>
+    </div>
+    <div class="panel-body">
+    
+    <div class="input-group" style="margin-top:100px;margin-left:5px;">
+    <div class="form-outline">
+    <input type="search" id="form1" class="form-control" />
+    <label class="form-label" for="form1">Search</label>
+    </div>
+    <button type="button" class="btn btn-primary" style="width:50px;height:38px;">
+    <i class="fa fa-search"></i>
+    </button>
+    </div>
+    
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Family Identification</th>
+            <th>Family Member </th>
+            <th>Relation</th>
+            <th>Idqr no.</th>
+            <th>Gender</th>
+            <th>Age</th>
+            <th>Profession</th>
+            <th>Wages</th>
+            <th>Census Year</th>
+           
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="header:${headers}">
+            <td th:text="${header.familyIdentification}"></td>
+            <td th:text="${header.nameOfMember}"></td>
+            <td th:text="${header.relation}"></td>
+            <td th:text="${header.didqr}"></td>
+            <td th:text="${header.dgender}"></td>
+            <td th:text="${header.dage}"></td>
+            <td th:text="${header.dprofession}"></td>
+            <td th:text="${header.dwages}"></td>
+            <td th:text="${header.censusYear}"></td>
+            
+            
+          </tr>
+
+         
+          
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
+
+
+
+   
+
+</body>
+</html>
+
+<style>
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+body{
+   background-color: #f3f5f9;
+}
+
+
+.btn{
+width:90px;
+}
+
+
+.btn1{
+width:90px;
+height:37px;
+border:solid green;
+border-radius:3px;
+}
+
+.h5{
+margin-top:50px;
+}
+
+.wrapper{
+  display: flex;
+  position: relative;
+  
+}
+
+.wrapper .sidebar{
+  margin-top:55px;
+  width: 250px;
+  height: 100%;
+  background: black;
+  padding: 30px 0px;
+  position: fixed;
+}
+
+.wrapper .sidebar h5{
+  color: #fff;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 30px;
+  margin-top:0px;
+}
+
+.wrapper .sidebar ul li{
+  padding: 15px;
+  border-bottom: 1px solid #bdb8d7;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+  border-top: 1px solid rgba(255,255,255,0.05);
+  margin-left:35px;
+}    
+
+.wrapper .sidebar ul li a{
+  color: #bdb8d7;
+  display: block;
+}
+
+.wrapper .sidebar ul li a .fas{
+  width: 25px;
+}
+
+.wrapper .sidebar ul li:hover{
+  background-color: #594f8d;
+}
+    
+.wrapper .sidebar ul li:hover a{
+  color: #fff;
+}
+ 
+
+.wrapper .main_content{
+  width: 100%;
+  margin-left: 200px;
+  margin-top:57px;
+}
+
+.wrapper .main_content .header1{
+  padding: 20px;
+  background: #fff;
+  color: #717171;
+  border-bottom: 1px solid #e0e4e8;
+  margin-left:50px;
+}
+
+.wrapper .main_content .info{
+  margin: 20px;
+  color: #717171;
+  line-height: 25px;
+  margin-left:50px;
+}
+
+.wrapper .main_content .info div{
+  margin-bottom: 20px;
+}
+
+.panel-body{
+    margin-left:260px;
+    margin-top:150px;
+}
+</style>
+

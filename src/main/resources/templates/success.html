@@ -3,10 +3,10 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Census Management System</title>
-
 <!-- Bootstrap CSS only -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 </head>
 <body>
 
@@ -14,11 +14,17 @@
 
 <div th:replace="dashboard::dashboard"></div>
 
-<img class="img" src="images/3d.jpg">
+
+
+
+
+<h5 style="margin-top:150px;margin-left:550px;">Your response has been saved successfully...
+    </h5>
+
+<img class="img" src="images/thanks.jpg">
 
 </body>
 </html>
-
 
 <style>
 *{
@@ -34,13 +40,12 @@ body{
    background-color: #f3f5f9;
 }
 
+
 .btn{
 width:90px;
 }
 
-.btn1{
-width:100px;
-}
+
 
 .wrapper{
   display: flex;
@@ -62,7 +67,7 @@ width:100px;
   text-transform: uppercase;
   text-align: center;
   margin-bottom: 30px;
-  
+  margin-top:0px;
 }
 
 .wrapper .sidebar ul li{
@@ -116,9 +121,25 @@ width:100px;
   margin-bottom: 20px;
 }
 
-.img{
-    margin-left:250px;
-    margin-top:120px;
-    width:1030px;
-    height:489px;
+.panel-body{
+    margin-left:260px;
 }
+
+.heading{
+    margin-left: 620px;
+    margin-top: 150px;
+}
+
+.img{
+    margin-left:315px;
+    height:410px;
+    width:900px;
+    margin-top:10px;
+}
+
+.para{
+    margin-left:280px;
+    margin-top: 20px;
+}
+
+</style>
