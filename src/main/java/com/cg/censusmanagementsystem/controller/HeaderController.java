@@ -36,7 +36,7 @@ public class HeaderController {
 	public ModelAndView saveEnumerator(@ModelAttribute("header") Header header, HttpServletRequest request){
 			
 			service.saveHeader(header);
-			ModelAndView mav=new ModelAndView("add"); 
+			ModelAndView mav=new ModelAndView("success"); 
 			return mav; 
 			
 		}
