@@ -408,10 +408,10 @@
           <label for="inputMember1" class="form-label">Type of work</label>
           <select id="inputMember1" name="dprofession" class="form-select" required>
             <option selected disabled value="" >Choose</option>
-            <option value="1">Public sector</option>
-            <option value="2">Private sector</option>
-            <option value="3">Unemployed</option>
-            <option value="4">Others</option>
+            <option value="Public sector">Public sector</option>
+            <option value="Private sector">Private sector</option>
+            <option value="Unemployed">Unemployed</option>
+            <option value="Others">Others</option>
              
           </select>
           
@@ -479,7 +479,7 @@
     
      $(function () {
          $("#inputMember1").change(function () {
-             if ($(this).val() != 3) {
+             if ($(this).val() != 'Unemployed') {
                  $("#wchange").removeAttr("disabled");
                  $("#wchange").focus();
              } else {
