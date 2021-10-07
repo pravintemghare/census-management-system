@@ -33,7 +33,7 @@ public class HeaderController {
 	}
 
 
-	@PostMapping("/zensus-0.0.1-SNAPSHOT/saveHeader")
+	@PostMapping("/saveHeader")
 	public ModelAndView saveEnumerator(@ModelAttribute("header") Header header, HttpServletRequest request){
 			
 			service.saveHeader(header);
@@ -43,7 +43,7 @@ public class HeaderController {
 		}
 	
 	
-	@GetMapping("/zensus-0.0.1-SNAPSHOT/viewHeader")
+	@GetMapping("/viewHeader")
 	public ModelAndView getAllHeaders(){
 		
 		ModelAndView mav=new ModelAndView("view");
@@ -52,7 +52,7 @@ public class HeaderController {
 		
 	}
 	
-	@GetMapping("/zensus-0.0.1-SNAPSHOT/viewDetails")
+	@GetMapping("/viewDetails")
 	public ModelAndView getAllDetails(){
 		
 		ModelAndView mav=new ModelAndView("details");
