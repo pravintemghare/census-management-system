@@ -36,10 +36,7 @@ public class FrontController {
 	}
 	
 	
-	/*
-	 * @RequestMapping(value = "/showLoginForm") public ModelAndView loginPage() {
-	 * ModelAndView mav=new ModelAndView("login"); return mav; }
-	 */
+	
 	
 	
 	@RequestMapping(value = "/dashboard")
@@ -71,13 +68,14 @@ public class FrontController {
 		return mav;
 	}
 	
+	/*
+	 * @RequestMapping(value = "/details") public ModelAndView DetailsPage() {
+	 * ModelAndView mav=new ModelAndView("details"); return mav; }
+	 */
 	
-	@RequestMapping(value = "/view")
-	public ModelAndView viewPage()
-	{
-		ModelAndView mav=new ModelAndView("view");
-		return mav;
-	}
+	
+	
+	 
 	
 	@RequestMapping(value = "/about")
 	public ModelAndView aboutPage()
@@ -85,6 +83,10 @@ public class FrontController {
 		ModelAndView mav=new ModelAndView("about");
 		return mav;
 	}
+	
+	
+
+	
 	
 	
 	
@@ -95,6 +97,7 @@ public class FrontController {
 		ModelAndView mav=new ModelAndView("help");
 		return mav;
 	}
+	
 	
 	
 	
